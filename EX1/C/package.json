@@ -1,0 +1,17 @@
+{
+  "name": "test-project",
+  "version": "1.0.0",
+  "description": "project for practicing in class",
+  "scripts": {
+    "start:dev": "node index.js",
+    "start:watch": "nodemon npm run start:dev"
+  },
+  "author": "hoktin",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
