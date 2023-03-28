@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStroge</title>
+
+    <style>
+        .container {
+            border: 5px solid black;
+            width: 50%;
+        
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+        }
+
+        .subcontainer {
+            background-color:gray;
+            border-radius: 20px;
+            height: 100px;
+            margin: 5px;
+        }
+
+        .column {
+            float: left;
+            padding-right: 20px;
+        }
+
+        .row {
+            margin-left: 10px;
+        }
+
+        .column input {
+            border-radius: 8px;
+            padding: 5px;
+        }
+
+        .Row {
+            padding: 20px;
+            display: flex;
+            margin: 10px;
+            padding-right: 50px;
+            border: 1px solid black;
+        }
+
+        #add-btn {
+            width: 50px;
+            margin-top: 50px;
+            height: 30px;
+            background-color: aquamarine;
+            border-radius: 10px;
+        }
+
+        .button {
+            padding: 5px;
+            margin-left: 10px;
+        }
+
+        span {
+            padding-inline-end: 120px;
+        }
+    </style>
+</head>
+
+<body onload=" renderList()">
+    <div class="container">
+        <div class="header">
+            <h1>To-do List with LocalStorage</h1>
+        </div>
+        <div class="subcontainer">
+            <div class="row">
+                <div class="column">
+                    <p>Task title</p>
+                    <input type="text" id="name" placeholder="title">
+                </div>
+                <div class="column">
+                    <p>Assingnee</p>
+                    <input type="text" id="assingnee" placeholder="Jonh">
+                </div>
+                <div class="column">
+                    <p>Dateline</p>
+                    <input type="date" name="dateline" id="date" placeholder="dd/MM/yyy">
+                </div>
+                <div class="column">
+                    <button id="add-btn" onclick="addname();">Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="wrapper">
+
+        </div>
+    </div>
+    <script>
+
+        var taskArr = [
+            { name: "Define requirement", assignee: "June", date: "2/34/22" },
+            { name: "Define requirement", assignee: "Jack", date: "2/34/22" },
+            { name: "Define requirement", assignee: "Thida", date: "2/34/22" },
+            { name: "Define requirement", assignee: "Minea", date: "2/34/22" },
+        ];
+         var taskArr = JSON.parse(localStorage.getItem("taskArr"));
+
+        function renderList() {
+            var index = 0;
+            document.getElementById("wrapper").innerHTML = "";
+            taskArr.forEach(task => {
+                document.getElementById('wrapper').innerHTML += `
+                                <div class= "Row">
+                                        <div class="column">
+                                                <span>${task?.name}</span>    
+                                                <span>${task?.assignee}</span>  
+                                                <span>${task?.date}</span>    
+                                        </div>
+                                        <div class="button">
+                                        <button onclick="deletelocal(${index});"> Delete </button>
+                                        <div>
+                                </div>
+                         `;
+                index++;
+            });
+        }
+        function addname() {
+            let id = taskArr.length;
+            let name = document.getElementById('name').value;
+            let assignee = document.getElementById("assingnee").value;
+            let date = document.getElementById('date').value;
+            let task = {
+                'name': name,
+                'assignee': assignee,
+                'date': date
+            };
+            taskArr.push(task);
+            localStorage.setItem("taskArr", JSON.stringify(taskArr));
+            renderList();
+        }
+
+        function deletelocal(index) {
+            taskArr.splice(index, 1);
+            localStorage.setItem("taskArr", JSON.stringify(taskArr));
+            renderList();
+        }
+    </script>
+
+</body>
+
+</html>

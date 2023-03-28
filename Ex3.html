@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cookieExpired</title>
+    <style>
+        .container {
+            border: 5px solid black;
+            width: 50%;
+
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+        }
+
+        .subcontainer {
+            background-color: gray;
+            border-radius: 20px;
+            height: 100px;
+            margin: 5px;
+        }
+
+        .column {
+            float: left;
+            padding-right: 20px;
+        }
+
+        .row {
+            margin-left: 10px;
+        }
+
+        .column input {
+            border-radius: 8px;
+            padding: 5px;
+        }
+
+        .Row {
+            padding: 20px;
+            display: flex;
+            margin: 10px;
+            padding-right: 50px;
+            border: 1px solid black;
+        }
+
+        #add-btn {
+            width: 50px;
+            margin-top: 50px;
+            height: 30px;
+            background-color: aquamarine;
+            border-radius: 10px;
+        }
+
+        .button {
+            padding: 5px;
+            margin-left: 10px;
+        }
+
+        span {
+            padding-inline-end: 120px;
+        }
+    </style>
+</head>
+
+<body onload="renderList()">
+    <div class="container">
+        <div class="header">
+            <h1>Cookie Management</h1>
+        </div>
+        <div class="subcontainer">
+            <div class="row">
+                <div class="column">
+                    <p>Key</p>
+                    <input type="text" id="name" placeholder="key">
+                </div>
+                <div class="column">
+                    <p>Value</p>
+                    <input type="text" id="value" placeholder="value">
+                </div>
+                <div class="column">
+                    <p>Expire</p>
+                    <input type="date" name="Expire" id="expries" placeholder="dd/MM/yyy">
+                </div>
+                <div class="column">
+                    <button id="add-btn" onclick="addname();">Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="wrapper">
+
+        </div>
+    </div>
+    <script>
+        // var key = "Key";
+        // var value = "Value";
+        function setCookie(cname,cvalue, exdays){
+            const date = new Date;
+            date.setTime(date.getTime() + (exdays * 24 * 60 * 1000));
+            let Expire = "expires" + date.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expies + ":path=/";
+        }
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let co = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+    </script>
+</body>
+
+</html>

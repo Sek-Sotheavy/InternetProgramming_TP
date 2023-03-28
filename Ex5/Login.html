@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login-with-Cookie</title>
+    <script src="./script.js"></script>
+    <style>
+        .wrapper {
+            border: 2px solid black;
+            width: 500px;
+            /* height: 350px; */
+            padding: 20px;
+            display: block;
+            text-align: center;
+        }
+
+        .input {
+
+            text-align: left;
+        }
+
+        .input input {
+            width: 100%;
+            height: 50px;
+            padding-left: 10px;
+            margin: 10px 10px 10px 0px;
+        }
+
+        .input button {
+            width: 100%;
+            height: 50px;
+            margin-top: 10px;
+            border: 0px solid black;
+            color: white;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <p>Login Information</p>
+        <p>Email = gic@gmail.com</p>
+        <p>Password = Gic123</p>
+
+        <div class="wrapper">
+            <img src="./girl.jpg" alt="7294793" width="200px" ; height="200px" ;>
+            <div class="input">
+                <label for="email">Email</label><br>
+                <input id="email" type="text" placeholder="Enter email">
+            </div>
+            <div class="input">
+                <label for="password">Password</label><br>
+                <input id="password" type="text" placeholder="Enter password">
+            </div>
+            <div class="input">
+                <button id="login" style="background-color: chartreuse;" onclick="login();">Login</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
