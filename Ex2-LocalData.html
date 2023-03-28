@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Local Data</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+                .lds-circle {
+                        display: inline-block;
+                        transform: translateZ(1px);
+                }
+
+                .lds-ellipsis {
+                        display: inline-block;
+                        position: relative;
+                        width: 80px;
+                        right: 50%;
+                        left: 50%;
+                        height: 80px;
+                }
+
+                .lds-ellipsis div {
+                        position: absolute;
+                        top: 33px;
+                        width: 13px;
+                        height: 13px;
+                        border-radius: 50%;
+                        background: #5b53a8;
+                        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+                }
+
+                .lds-ellipsis div:nth-child(1) {
+                        left: 8px;
+                        animation: lds-ellipsis1 0.6s infinite;
+                }
+
+                .lds-ellipsis div:nth-child(2) {
+                        left: 8px;
+                        animation: lds-ellipsis2 0.6s infinite;
+                }
+
+                .lds-ellipsis div:nth-child(3) {
+                        left: 32px;
+                        animation: lds-ellipsis2 0.6s infinite;
+                }
+                @keyframes lds-ellipsis1 {
+                        0% {
+                                transform: scale(0);
+                        }
+
+                        100% {
+                                transform: scale(1);
+                        }
+                }
+
+                @keyframes lds-ellipsis3 {
+                        0% {
+                                transform: scale(1);
+                        }
+
+                        100% {
+                                transform: scale(0);
+                        }
+                }
+
+                @keyframes lds-ellipsis2 {
+                        0% {
+                                transform: translate(0, 0);
+                        }
+
+                        100% {
+                                transform: translate(24px, 0);
+                        }
+                }
+
+        </style>
+
+
+</head>
+
+<body>
+
+        <div class="m-auto border w-[50vw] h-[60vh] flex flex-col gap-3 bg-white-300 p-3 overflow-y-scroll mt-5"
+                id="display">
+                <div class="lds-ellipsis text-center" id="load">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+
+                </div>
+        </div>
+
+        <script>
+                if (!localStorage.getItem('getairlineEle')) {
+                        localStorage.setItem('getairlineELe', 0);
+                }
+                console.log(localStorage.getItem('getairlineEle'));
+
+                let displayEle = document.getElementById("display");
+                let currpageN = 0;
+                let dataLoading = false;
+                let string_obj = "";
+
+                const loadingEle = (page) => {
+                        dataLoading = true;
+                        console.log("Page " + page + ": ");
+                        if (localStorage.getItem('getairlineEle') > currpageN) {
+                                const getEle = localStorage.getItem(`airlineP${currpageN}`);
+                                let localdata = JSON.parse(getEle);
+                                localdata.forEach(result => {
+                                        string_obj += `
+                                        <div class="wrapper bg-blue-100 w-full p-[2.5vh]">
+                                                <div>🛩: <span class="font-bold">${result.airline[0].name} - ${result.airline[0].country}</span></div>
+                                        <div>🙂: ${result["name"]}</div>
+                                        </div>`
+                                });
+                                displayEle.innerHTML = string_obj;
+                                currpageN++;
+                                dataLoading = false;
+                        } 
+                        
+                        else {
+                                fetch(`https://api.instantwebtools.net/v1/passenger?page=${page}&size=20`)
+                                        .then(async (res) => {
+                                                let rs = await res.json();
+                                                let data = rs.data
+                                                localStorage.setItem(`airlineP${page}`, JSON.stringify(data));
+                                                data.forEach(result => {
+                                                        
+                                                        string_obj += `
+                                                        <div class="wrapper bg-blue-100 w-full p-[2.5vh]">
+                                                                <div>🛩: <span class="font-bold">${result.airline[0].name} - ${result.airline[0].country}</span></div>
+                                                                <div>🙂: ${result["name"]}</div>
+                                                        </div>`
+                                                });
+                                                displayEle.innerHTML = string_obj;
+                                                currpageN++;
+                                                localStorage.setItem('getairlineEle', currpageN);
+                                                dataLoading = false;
+                                        })
+                        }
+                        displayEle.addEventListener("scroll", (event) => {
+                                const { scrollTop, clientHeight, scrollHeight } = displayEle;
+                                if ((clientHeight + scrollTop) >= scrollHeight * 0.95) {
+                                        if (!dataLoading) {
+                                                loadingEle(currpageN);
+                                        }
+                                }
+                        });
+                }
+                loadingEle(currpageN);
+        </script>
+
+</body>
+</html>
