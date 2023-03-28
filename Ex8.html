@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .wrapped{
+          background-color:darkseagreen;
+          margin: auto;
+          width: 50%;
+          height: 200px;
+          text-align: center;
+        }
+        .drop{
+            position: relative;
+        }
+        .drop:nth-child(1){
+            animation: 
+            grow 3s 2s,
+            drop 5s forwards;
+        }
+        .drop:nth-child(2){
+            animation:
+            grow 6s 2s,
+            drop 10s forwards;
+        }
+        .drop:nth-child(3){
+            animation:
+            grow 9s 2s,
+            drop 15s forwards;
+        }
+        @keyframes grow {
+            0%,100%{transform: scale(1);}
+            60%{transform: scale(2);}
+        }
+        @keyframes drop {
+            0%{top: -100px;}
+            100%{top: 100px;}
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="wrapped">
+        <span class="drop" styel="--order: 1">&#129395</span>
+        <span class="drop" style="--order: 2">&#128540</span>
+        <span class="drop" style="--order: 3">&#129321</span>
+        </span>
+    </div>
+</body>
+</html>

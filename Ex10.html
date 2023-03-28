@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .container{
+            height: 480px;
+            width: 50%;
+            border: 2px solid black;
+            
+        }
+        .header{
+            padding-top: 30px;
+            text-align:center;
+            font-size:larger;
+            background-color:lightcoral;
+            width: 735px;
+            height: 70px;
+        }
+        .content{
+            background-color: azure;
+            height: 400px;
+            overflow: scroll;
+            /* width: 700px; */
+        }
+        .row-wrapped{
+            display: table;
+            height: 200px;
+            background-color: gainsboro;
+            display: flex;
+            padding: 10px;
+        }
+        .column-wrapped{
+            float: left;
+          
+        }
+        .box{
+            width: 100px; 
+            margin-top: 20px;
+            margin-left: 30px;
+            margin-right: 10px;
+            height: 50px;
+            padding: 50px;
+            font-size: 20px;
+            background-color: darkseagreen;
+            text-align: center;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Scrollable Horizontally</div>
+        <div class="content">
+                <div class="row-wrapper">
+                <div class="column-wrapped">
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                    <div class="box"></div>
+                </div>
+            <div class="column-wrapped">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div class="column-wrapped">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div class="column-wrapped">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div class="column-wrapped">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            
+        </div>
+    </div>
+        
+    </div>
+    
+</body>
+</html>
