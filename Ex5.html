@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .wrapper {
+            background-color: gray;
+            padding: 5px;
+            text-align: center;
+            color: aliceblue;
+            width: fit-content;
+        }
+
+        .p {
+            margin: auto;
+            padding: 5px;
+        }
+
+        #project {
+            margin: 5px;
+            margin-left: 150px;
+            padding: 0px;
+            width: fit-content;
+            background-color: black;
+        }
+
+        #canvasVideo {
+            border: 2px solid black;
+            width: 500px;
+            height: 400px;
+            background-color: white;
+        }
+
+        #canvasVideoProject {
+            border: 1px solid black;
+            width: 500px;
+            height: 350px;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <canvas id="canvasVideo"></canvas>
+            <p> Canvas 👻: Please show your face on me </p>
+            <button id="btnPlay">Play</button>
+        </div>
+        <div class="wrapper">
+            <p id="project">Multiple Projection with Canvases</p>
+            <canvas id="canvasVideoProject"></canvas>
+
+        </div>
+    </div>
+    <script>
+        var play = true;
+        document.getElementById("btnPlay").addEventListener("click", playPause);
+        function playPause() {
+            if (play) {
+                play = false;
+                document.getElementById("btnPlay").addEventListener("click", loop);
+                document.getElementById("btnPlay").innerHTML = "Play";
+            } else {
+                play = true;
+                document.getElementById("btnPlay").innerHTML = "Pause";
+                document.getElementById("btnPlay").addEventListener("click", clearImage)
+
+            }
+
+        }
+        //access the camera
+        var video = document.createElement("video");
+        video.autoplay = true;
+
+        navigator.mediaDevices.getUserMedia({
+            audio: false, video: true
+        }).then((stream) => {
+            video.srcObject = stream;
+        }).catch((err) => {
+            console.log("navigator.MediaDevices.getUeredia error: ", err.message, err.name);
+        });
+
+        //loop drawing
+        var canvas = document.getElementById('canvasVideo');
+        var ctx = canvas.getContext('2d');
+        var canvasProject = document.getElementById('canvasVideoProject');
+        var ctxProject = canvasProject.getContext('2d');
+        function loop() {
+            if (play) {
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                ctxProject.drawImage(video, 0, 0, 213, 240, 0, 0, 99, 74);
+                ctxProject.drawImage(video, 213, 0, 213, 240, 100, 0, 99, 74);
+                ctxProject.drawImage(video, 426, 0, 213, 240, 200, 0, 100, 74);
+                ctxProject.drawImage(video, 0, 240, 213, 240, 0, 75, 99, 75);
+                ctxProject.drawImage(video, 213, 240, 213, 240, 100, 75, 99, 75);
+                ctxProject.drawImage(video, 426, 240, 213, 240, 200, 75, 100, 75);
+                setTimeout(loop, 1000 / 30); 
+            }
+        }
+        function clearImage() {
+            if (!play) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctxProject.clearRect(video, 0, 0, 213, 240, 0, 0, 99, 74);
+                ctxProject.clearRect(video, 213, 0, 213, 240, 100, 0, 99, 74);
+                ctxProject.clearRect(video, 426, 0, 213, 240, 200, 0, 100, 74);
+                ctxProject.clearRect(video, 0, 240, 213, 240, 0, 75, 99, 75);
+                ctxProject.clearRect(video, 213, 240, 213, 240, 100, 75, 99, 75);
+                ctxProject.clearRect(video, 426, 240, 213, 240, 200, 75, 100, 75);
+            }
+        }
+    </script>
+</body>
+
+</html>

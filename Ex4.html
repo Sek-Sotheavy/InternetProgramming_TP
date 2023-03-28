@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .content {
+          display: flex;
+          justify-content: center;
+        }
+    
+        .wrapper {
+          background-color: grey;
+          padding: 5px;
+          text-align: center;
+          color: aliceblue;
+          width: fit-content;
+        }
+    
+        .p {
+          margin: auto;
+          padding: 5px;
+        }
+    
+        #myCanvas {
+          border: 2px solid black;
+          width: 500px;
+          height: 400px;
+          background-color: white;
+        }
+      </style>
+</head>
+<body>
+    <div class="content">
+        <div class="wrapper">
+    
+          <canvas id="myCanvas"></canvas>
+          <p>Canvas 👻: Insert Me here Please!</p>
+          <button  id="btnPlay">Play</button>
+        </div>
+    
+      </div>
+    <script>
+        var play = true;
+        document.getElementById("btnPlay").addEventListener("click", playPause);
+
+        function playPause(){
+            if(play){
+                play = true;
+                document.getElementById("btnPlay").addEventListener("click",loop);
+                document.getElementById("btnPlay").innerHTML = "Play";
+            }else{
+                play = false;
+                document.getElementById("btnPlay").innerHTML = "Pause";
+                document.getElementById("btnPlay").addEventListener("click",clearImg);
+            }
+        }
+        function clearImg(){
+            if(!play){
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+        var video = document.createElement("video");
+        video.autoplay = true;
+        navigator.mediaDevices.getUserMedia({
+            audio: false,
+            video: true
+        }).then((stream) =>{
+            video.srcObject = stream;
+        }).catch((err) => {
+            console.log('navigator.MediaDevice.getUseMedia error: ',err.message, err.name );
+        });
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        (function loop(){
+            if(play){
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                setTimeout(loop, 100/30);
+            }
+        })();
+    </script>  
+</body>
+</html>
