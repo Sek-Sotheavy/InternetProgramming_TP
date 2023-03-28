@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store</title>
+    <style>
+        body {
+            display: flex;
+            border: 2px solid black;
+        }
+
+        .Book {
+            padding: 20px;
+            background-color: antiquewhite;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        p {
+            margin: auto;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: rgb(179, 204, 245);
+            border-radius: 2px;
+            margin-top: 5px;
+            border: 2px solid black;
+        }
+
+        .book_list {
+            display: grid;
+            background-color: rgb(139, 218, 242);
+            width: 80%;
+            padding: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        #box {
+            background-color: azure;
+            display: inline-block;
+            border-radius: 10px;
+            width: 450px;
+            height: 40%;
+            border: 1px solid black;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Book">
+        <p>Name:</p>
+        <input type="text" id="name" placeholder="Book's name">
+        <p>Category: </p>
+        <input type="text" id="category" placeholder="Type of Book">
+        <p>Price: </p>
+        <input type="text" id="price" placeholder="price">
+        <br><button id="add" onclick="addBook();">Add</button>
+
+    </div>
+
+    <div id="loading" class="loading" hidden>loading</div>
+    <div id="list_book">
+        <ul></ul>
+    </div>
+
+    </div>
+
+</body>
+<script>
+    function addBook() {
+
+        const loadingTextElement = document.getElementById("loading");
+        const bookEle = document.getElementById("list_book");
+        const displayElement = document.getElementById("display");
+
+        loadingTextElement.hidden = false;
+        // displayElement.hidden = true;
+
+        fetch("https://jsonplaceholder.typicode.com/photos")
+            .then(response => {
+                return response.json();
+            }).then((myJson) => {
+                loadingTextElement.hidden = true;
+                console.log(myJson);
+                myJson.forEach(photo => {
+                    const markup = `
+                <div id="box">
+                    <li> ${photo.albumId}</li>
+                    <li> ${photo.id}</li>
+                    <li> ${photo.title}</li>
+                    <li>
+                    <a href="${photo.Url}">${photo.Url}</a></li>
+                    <li>${photo.thumbnailUrl}</li>
+                    <li><a href="./Ex5-seemore.html">see more</a></li>
+                </div>
+                    `;
+                    document.querySelector('ul').insertAdjacentHTML('beforeend', markup);
+                });
+            })
+    }
+</script>
+
+</script>
+
+</html>

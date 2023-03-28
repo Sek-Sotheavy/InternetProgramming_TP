@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>see more</title>
+    <style>
+        .container{
+            border: 2px solid black;
+            width: 50%;
+            margin: auto;
+            height: 500px;
+        }
+        .header{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background-color:dimgrey;
+            height: 200px;
+
+        }
+    </style>
+</head>
+<body onload="BookShop()">
+    <div class="container">
+        <div class="header" id="header">
+            <div id="Id"></div>
+            <div id="title"></div>
+        </div>
+
+        <div id="sub-container"></div>
+    </div>
+    <script>
+        const IdEle = document.getElementById("Id");
+        const titleEle = document.getElementById("title");
+        const subcontainerEle = document.getElementById("sub_container");
+
+        function BookShop(){
+            fetch(`https://jsonplaceholder.typicode.com/photos/${albumId}`)
+            .then((res)=>{
+                return res.json();
+            })
+            .then((myJson)=>{
+                console.log(myJson);
+                IdEle.innerHTML = myJson["Id"];
+                titleEle.innerHTML = myJson["title"];
+            })
+        }
+    </script>
+</body>
+</html>
