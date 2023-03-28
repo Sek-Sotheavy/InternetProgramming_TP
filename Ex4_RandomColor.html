@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Color</title>
+    <style>
+        .wrapper {
+            border: 2px solid black;
+            font-family: 'Roboto', sans-serif;
+            color: aqua;
+            margin: auto;
+            margin-top: 20px;
+            border: 1px solid black;
+            width: fit-content;
+            background-color: black;
+            text-align: center;
+            height: 600px;
+        }
+
+        .header {
+            color: #73adff;
+            font-weight: 500;
+            height: 40px;
+            padding-left: 20px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .background{
+            background-color: black;
+        }
+        .button {
+            margin-top: 20px;
+            font-size: medium;
+            height: 50px;
+        }
+
+        .button .button {
+            width: 100px;
+            height: 40px;
+            font-weight: 500;
+            color: white;
+            background-color: black;
+            border: 1px solid black;
+            border-radius: 3px;
+        }
+
+        #reset {
+            width: 70px;
+            background-color: unset;
+            color: white;
+        }
+
+        .display {
+            width: 330px;
+            text-align: left;
+            padding: 10px;
+            background-color: white;
+            height: 180px;
+            overflow: auto;
+        }
+
+        .text {
+            display: flex;
+        }
+
+        .square {
+            width: 15px;
+            height: 15px;
+            margin-left: 5px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body onload="color.displayColor()">
+    <div class="wrapper" id="wrapper">
+        <div class="header">Random Color Generator</div>
+        <div class="background">
+            <h1>Background Color : </h1>
+            <div id="code">#123132</div>
+        </div>
+        <div class="button">
+            <button id="generate" onclick="color.generate()">GENTERATE</button>
+            <button id="reset" onclick="color.reset()">RESET</button>
+        </div>
+        <div class="display" id="display"></div>
+    </div>
+    <script>
+        class Color {
+            colorType = "HEX";
+            records = [];
+
+            constructor(type) {
+                this.colorType = type;
+                this.getRecords();
+            }
+
+            generate() {
+                let color = this.getRandomNumber();
+                this.records.push(color);
+                localStorage.setItem('colorGen', JSON.stringify(this.records));
+                this.displayColor();
+            }
+            displayColor() {
+                document.getElementById("display").innerHTML = "";
+                document.getElementById("wrapper").style.backgroundColor = this.records[this.records.length - 1];
+                document.getElementById("code").innerHTML = this.records[this.records.length - 1];
+
+                for (let i = this.records.length - 1; i >= 0; i--) {
+                    // for(let i=0; i<this.records.length; i++){
+                    document.getElementById("display").innerHTML += `<div class="text">${this.records[i]}<div class="square" style="background-color: ${this.records[i]};"></div> </div>`
+                }
+
+            }
+            getRandomNumber() {
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+            getRecords() {
+                this.records = JSON.parse(localStorage.getItem('colorGen'));
+                // console.log(this.records);
+            }
+            reset() {
+                this.records = [];
+                localStorage.setItem('colorGen', JSON.stringify(this.records));
+                document.getElementById("display").innerHTML = "";
+
+            }
+        }
+        var color = new Color("HEX");
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Menu</title>
+    <style>
+        .container {
+            border: 4px solid black;
+            background-color: white;
+            margin: auto;
+        }
+
+        .header {
+            text-align: center;
+            padding: 15px;
+            color: blue;
+        }
+
+        .subcontainer {
+            padding: 10px;
+            display: flex;
+
+            padding-left: 10px;
+            /* background-color: khaki; */
+        }
+
+        .subcontainer p {
+            width: 150px;
+            padding: 5px;
+            border-radius: 10px;
+            border: 2px solid khaki;
+            box-shadow: 0 20px 40px rgba(red, green, blue, alpha);
+            text-align: center;
+            color: khaki;
+            margin: 10px;
+        }
+
+        .header hr {
+            width: 30%;
+            text-align: center;
+            height: 5px;
+            border-radius: 5px;
+            background-color: aquamarine;
+        }
+
+        .one {
+            padding: 20px;
+            align-items: center;
+        }
+
+        .two {
+            padding: 20px;
+            align-items: center;
+        }
+
+        .row img {
+            /* align-items: center; */
+            border: 2px solid orange;
+            display: flex;
+            border-radius: 10px;
+            /* padding: 20px; */
+
+        }
+
+        .row {
+            margin-bottom: 70px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+
+        .row h5 {
+            display: inline;
+            /* padding-left: 100px; */
+        }
+
+        .row p {
+            display: inline;
+            color: cadetblue;
+        }
+
+        .column {
+            display: flex;
+        }
+
+        .menu-container {
+            margin-left: 60px;
+            font-size: 20px;
+        }
+
+        .column .menu-container h5 {
+            text-transform: uppercase;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+
+        .column img {
+            /* align-items: center; */
+            border: 2px solid orange;
+            display: flex;
+            border-radius: 10px;
+        }
+
+        .column p {
+            display: inline;
+            color: cadetblue;
+            padding: 20px;
+
+        }
+
+        @media only screen and (min-width:601px) {
+
+            /* 601-> max */
+            .one {
+                display: none;
+            }
+
+        }
+
+        @media only screen and (max-width:600px) {
+
+            /* 600->0 */
+            .two {
+                display: none;
+            }
+        }
+
+        .two {
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="one">
+            <div class="header">
+                <h2>Our Menu</h2>
+                <hr>
+            </div>
+            <div class="subcontainer">
+                <p>All</p>
+                <p>Breakfast</p>
+                <p>Launch</p>
+                <p>Shakes</p>
+                <p>Dinner</p>
+            </div>
+
+            <div class="row">
+                <img src="./pancakes.jpg" alt="Pancake" width="90%">
+                <h5>Buttermilk Pancake</h5>
+                <h5 style="padding-left: 60px;">15.99$</h5>
+                <hr>
+
+                <p>I'm baby woke mlkshk wolf bitters live-edge blue bottle, hammock freegan copper mug whatever
+                    cold-pressed</p>
+            </div>
+            <div class="row">
+                <img src="./burger.jpg" alt="Burger" width="90%">
+                <h5>Diner Double</h5>
+                <h5 style="padding-left: 100px;">15.99$</h5>
+                <hr>
+                <p>varporware Iphone mumblecore selvage raw denim slow-crab leggings gochujang helvetic man braid
+                    jianbing. MArfa thundercats.</p>
+            </div>
+            <div class="row">
+                <img src="./mliksahes.jpg" alt="Milkshakes" width="90%">
+                <h5>Godzila Milkshakes</h5>
+                <h5 style="padding-left: 60px;">15.99$</h5>
+                <hr>
+                <p>Ombucha chilwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.
+                </p>
+            </div>
+
+        </div>
+        <div class="two">
+            <div class="header">
+                <h2>Our Menu</h2>
+                <hr>
+            </div>
+            <div class="subcontainer">
+                <p>All</p>
+                <p>Breakfast</p>
+                <p>Launch</p>
+                <p>Shakes</p>
+                <p>Dinner</p>
+            </div>
+
+            <div class="column">
+                <img src="./pancakes.jpg" alt="Pancake" width="40%">
+
+                <div class="menu-container">
+                    <h5>Buttermilk Pancake
+                        <span style="float: right;">15.99$</span>
+                    </h5>
+                    <hr>
+
+                    <p>I'm baby woke mlkshk wolf bitters live-edge blue bottle, hammock freegan copper mug whatever
+                        cold-pressed</p>
+                </div>
+
+            </div>
+            <div class="column">
+                <img src="./burger.jpg" alt="Burger" width="40%">
+                <div class="menu-container">
+                    <h5>Diner Double
+                        <span style="float: right;">15.99$</span>
+                    </h5>
+                    <hr>
+
+                    <p>varporware Iphone mumblecore selvage raw denim slow-crab leggings gochujang helvetic man braid
+                        jianbing. Marfa thundercats.</p>
+                </div>
+
+
+            </div>
+            <div class="column">
+                <img src="./mliksahes.jpg" alt="Milkshakes" width="40%">
+                <div class="menu-container">
+                    <h5>Godzila Milkshakes
+                        <span style="float: right;">15.99$</span>
+                    </h5>
+                    <hr>
+                    <p>Ombucha chilwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.</p>
+                </div>
+                
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>
