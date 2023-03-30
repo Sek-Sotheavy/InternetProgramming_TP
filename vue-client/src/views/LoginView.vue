@@ -19,7 +19,7 @@
                 </div>
                 <div class="input-field">
                     <div class="input">
-                        <label for="email">Username</label>
+                        <label for="email">Email</label>
                         <input v-model="email" type="Email" placeholder="Enter email">
                     </div>
                     <div class="input">

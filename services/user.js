@@ -1,15 +1,15 @@
 var db = require('../db/db');
 
-const login = async (username, password) => {
+const login = async (email, password) => {
   // to check in db if the user is existed
   let isChecked = false;
   let allUsers = await db.getAllUsers();
 
   allUsers.forEach( user => {
-    let userinput = user.username;
+    let userinput = user.email;
     let userpassword = user.password;
     
-    if (userinput=== username&& userpassword=== password){
+    if (userinput=== email&& userpassword=== password){
        isChecked = true;
     }
   });
