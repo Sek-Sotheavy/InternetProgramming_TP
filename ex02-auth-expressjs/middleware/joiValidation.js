@@ -1,0 +1,18 @@
+//const { json } = require("express");
+const joiValidation = (schema) =>{
+    return async (req, res, next) =>{
+        //const param = JSON.parse(req.body);
+        try{
+            // const body = param;
+            await schema.validateAsync(req.body);
+            next();
+        }catch(err){
+            return res.json({
+                success: false,
+                error: err || 'error'
+            })
+        }
+        // next();
+    }
+}
+module.exports = {joiValidation}

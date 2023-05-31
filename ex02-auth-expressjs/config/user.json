@@ -1,0 +1,30 @@
+[
+  {
+    "email": "vy@gmail.com",
+    "username": "sotheavy",
+    "firstName": "so",
+    "lastName": "theavy",
+    "password": "123908"
+  },
+  {
+    "email": "tola@gmail.com",
+    "username": "tola",
+    "firstName": "to",
+    "lastName": "la",
+    "password": "456789"
+  },
+  {
+    "email": "testa@gmail.com",
+    "username": "testa",
+    "firstName": "test",
+    "lastName": "test",
+    "password": "pwd564"
+  },
+  {
+     "email": "nai@gmail.com",
+     "username": "naita",
+     "firstName": "nai",
+     "lastName": "theavy",
+     "password": "476368"
+  }
+]

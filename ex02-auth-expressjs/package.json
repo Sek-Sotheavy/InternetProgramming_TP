@@ -1,0 +1,23 @@
+{
+  "name": "tp09",
+  "version": "1.0.0",
+  "description": "- Change Reload\r $ npm install nodemon -g\r $ nodemon app.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "theavy",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "joi": "^17.9.2",
+    "mongodb": "^5.5.0",
+    "mongoose": "^7.2.1"
+  }
+}
